@@ -1,26 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CountryList } from "./components/CountryList";
+import countries from "./country-data.json";
+import { transformCountries } from "./mappers";
+import { ICountry } from "./types";
 
-function App() {
+export const App = () => {
+  const transformedCountries: ICountry[] = transformCountries(countries);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="py-4">Country List</h1>
+      <CountryList countries={transformedCountries} />
     </div>
   );
-}
-
-export default App;
+};
